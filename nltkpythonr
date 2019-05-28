@@ -1,0 +1,58 @@
+---
+title: "Python"
+author: "Unknown"
+date: "5/15/2019"
+output:
+  html_document: default
+---
+
+```{r, setup}
+library(reticulate)
+library(knitr)
+# use_python(python = "usr/bin/python")
+# matplotlib <- import("matplotlib")
+# matplotlib$use("Agg", force = TRUE)
+```
+
+
+##User Python to create a Lexcial Dispersion Plot and a Frequency Distribution Plot: Note(Run all of the python code in one chunk to display the plots properly)
+
+```{python}
+
+##Import the necessary libraries    
+import nltk 
+import matplotlib
+from matplotlib import pylab
+##Tell matplotlib to not use the Xwindow default
+matplotlib.use('Agg')
+from nltk.book import*
+
+##Create the object words and place the words we want to see in our Lexical Dispersion plot.
+words = ["Grail","wound","Camelot","Knights","King","Lancelot","Robin","Arthur"]
+
+##Create our Lexical Dispersion plot  
+fig = text6.dispersion_plot(words)
+
+pylab.savefig('fig.png')
+
+##Create a Frequency Distributin plot based  on text6 from the nltk.download() options. 
+fdist6 = FreqDist(text6)
+fdist6.plot(50,cumulative=True)
+##This is done to 
+pylab.savefig('figplot.png')
+
+```
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("fig.png")
+```
+
+
+
+```{r, echo=FALSE}
+knitr::include_graphics("figplot.png")
+```
+
+
+
